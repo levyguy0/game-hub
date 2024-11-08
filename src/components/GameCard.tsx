@@ -1,6 +1,14 @@
 import React from "react";
 import { Game } from "../hooks/useGames";
-import { Card, CardBody, HStack, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Card,
+  CardBody,
+  HStack,
+  Heading,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../services/image-url";
@@ -22,7 +30,14 @@ const GameCard = ({ game }: Props) => {
           <CriticScore score={game.metacritic}></CriticScore>
         </HStack>
         <Heading fontSize="2xl">
-          {game.name}
+          <Link
+            href={`https://rawg.io/games/${game.name
+              .replace(":", "")
+              .split(" ")
+              .join("-")}`}
+          >
+            {game.name}
+          </Link>
           <Emoji rating={game.rating_top}></Emoji>
         </Heading>
       </CardBody>
